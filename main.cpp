@@ -14,6 +14,7 @@ void PlayGame();
 void ViewStatistics();
 void ViewInstructions();
 void ViewCredits();
+void BackToStats();
 
 int main()
 {
@@ -30,37 +31,29 @@ int main()
         int x, y;
         if(LCD.Touch(&x, &y))
         {
-            // Play Game Button
+            /*Play Game Selection*/
             if(x >= 90 && x <= 210 && y >= 65 && y <= 95)
             {
                 LCD.Clear();
                 PlayGame();
-                BackButton();
-                // Game logic would go here
             }
-            // View Statistics Button
+            /*View Statistics Selection*/
             else if(x >= 50 && x <= 230 && y >= 105 && y <= 135)
             {
                 LCD.Clear();
                 ViewStatistics();
-                BackButton();
-                // Statistics logic would go here
             }
-            // View Instructions Button
+            /*View Instructions Selection*/
             else if(x >= 50 && x <= 230 && y >= 145 && y <= 175)
             {
                 LCD.Clear();
                 ViewInstructions();
-                BackButton();
-                // Instructions logic would go here
             }
-            // View Credits Button
+            /*View Credits Selection*/
             else if(x >= 70 && x <= 210 && y >= 185 && y <= 215)
             {
                 LCD.Clear();
                 ViewCredits();
-                BackButton();
-                // Credits logic would go here
             }
         }
         Sleep(0.1);
@@ -128,20 +121,6 @@ void BackButton()
     LCD.WriteAt("Back to Menu", 10, 10);
     LCD.SetFontColor(BLUE);
     LCD.DrawRectangle(5, 5, 85, 20);
-
-    while (true)
-    {
-    if (LCD.Touch(&x, &y))
-    {
-        if (x >= 5 && x <= 80 && y >= 5 && y <= 25)
-        {
-        LCD.Clear();
-        GameMenu();
-        return;
-        }
-    }
-    Sleep(0.1);
-    }
     LCD.Update();
 }
 
@@ -152,26 +131,81 @@ void PlayGame()
     LCD.WriteAt("Select Difficulty", 55, 40);
     LCD.DrawLine(50, 65, 280, 65);
 
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(GREEN);
     LCD.SetFontScale(1.0);
     LCD.WriteAt("Easy", 138, 100);
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(GREEN);
     LCD.DrawRectangle(90, 90, 140, 36);
     LCD.Update();
 
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(GOLDENROD);
     LCD.SetFontScale(1.0);
     LCD.WriteAt("Medium", 125, 150);
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(GOLDENROD);
     LCD.DrawRectangle(90, 140, 140, 36);
     LCD.Update();
 
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(RED);
     LCD.SetFontScale(1.0);
     LCD.WriteAt("Hard", 138, 200);
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(RED);
     LCD.DrawRectangle(90, 190, 140, 36);
     LCD.Update();
+
+    BackButton();
+    LCD.Update();
+
+    /*Difficulty Selection*/
+    int x, y;
+    while (true)
+    {
+        if (LCD.Touch(&x, &y))
+        {
+            if (x >= 90 && x <= 230 && y >= 90 && y <= 126)
+            {
+                /*Easy Mode*/
+                LCD.Clear();
+                LCD.SetFontColor(SCARLET);
+                LCD.SetFontScale(1.0);
+                LCD.WriteAt("Easy Mode Selected!", 50, 100);
+                LCD.Update();
+                Sleep(2.0);
+                LCD.Clear();
+                return;
+            }
+            else if (x >= 90 && x <= 230 && y >= 140 && y <= 176)
+            {
+                // Medium Mode Logic
+                LCD.Clear();
+                LCD.SetFontColor(SCARLET);
+                LCD.SetFontScale(1.0);
+                LCD.WriteAt("Medium Mode Selected!", 35, 100);
+                LCD.Update();
+                Sleep(2.0);
+                LCD.Clear();
+                return;
+            }
+            else if (x >= 90 && x <= 230 && y >= 190 && y <= 226)
+            {
+                // Hard Mode Logic
+                LCD.Clear();
+                LCD.SetFontColor(SCARLET);
+                LCD.SetFontScale(1.0);
+                LCD.WriteAt("Hard Mode Selected!", 50, 100);
+                LCD.Update();
+                Sleep(2.0);
+                LCD.Clear();
+                return;
+            }
+            else if (x >= 5 && x <= 80 && y >= 5 && y <= 25)
+            {
+                LCD.Clear();
+                GameMenu();
+                return;
+            }
+        }
+        Sleep(0.1);
+    }
 }
 
 void ViewStatistics()
@@ -181,28 +215,98 @@ void ViewStatistics()
     LCD.WriteAt("Statistics", 108, 40);
     LCD.DrawLine(50, 65, 280, 65);
 
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(GREEN);
     LCD.SetFontScale(1.0);
     LCD.WriteAt("Easy Mode", 105, 100);
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(GREEN);
     LCD.DrawRectangle(90, 90, 140, 36);
     LCD.Update();
 
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(GOLDENROD);
     LCD.SetFontScale(1.0);
     LCD.WriteAt("Medium Mode", 93, 150);
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(GOLDENROD);
     LCD.DrawRectangle(90, 140, 140, 36);
     LCD.Update();
 
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(RED);
     LCD.SetFontScale(1.0);
     LCD.WriteAt("Hard Mode", 105, 200);
-    LCD.SetFontColor(GRAY);
+    LCD.SetFontColor(RED);
     LCD.DrawRectangle(90, 190, 140, 36);
     LCD.Update();
-    // Statistics display logic would go here
+
+    BackButton();
+    LCD.Update();
+    
+    int x, y;
+    while (true)
+    {
+        if (LCD.Touch(&x, &y))
+        {
+            if (x >= 90 && x <= 230 && y >= 90 && y <= 126)
+            {
+                LCD.Clear();
+                LCD.SetFontColor(GREEN);
+                LCD.SetFontScale(1.0);
+                LCD.WriteAt("Easy Mode Statistics", 40, 80);
+                LCD.DrawHorizontalLine(100, 10, 310);
+                LCD.SetFontColor(GRAY);
+                LCD.WriteAt("Games Played: ", 40, 110);
+                LCD.WriteAt("Games Won: ",  40, 130);
+                LCD.WriteAt("Best Time: ",  40, 150);
+                LCD.Update();
+                Sleep(3.0);
+                BackToStats();
+            }
+            else if (x >= 90 && x <= 230 && y >= 140 && y <= 176)
+            {
+                LCD.Clear();
+                LCD.SetFontColor(GOLDENROD);
+                LCD.SetFontScale(1.0);
+                LCD.WriteAt("Medium Mode Statistics", 30, 80);
+                LCD.DrawHorizontalLine(100, 10, 310);
+                LCD.SetFontColor(GRAY);
+                LCD.WriteAt("Games Played: ", 40, 110);
+                LCD.WriteAt("Games Won: ", 40, 130);
+                LCD.WriteAt("Best Time: ", 40, 150);
+                LCD.Update();
+                Sleep(3.0);
+                BackToStats();
+            }
+            else if (x >= 90 && x <= 230 && y >= 190 && y <= 226)
+            {
+                LCD.Clear();
+                LCD.SetFontColor(RED);
+                LCD.SetFontScale(1.0);
+                LCD.WriteAt("Hard Mode Statistics", 35, 80);
+                LCD.DrawHorizontalLine(100, 10, 310);
+                LCD.SetFontColor(GRAY);
+                LCD.WriteAt("Games Played: ", 40, 110);
+                LCD.WriteAt("Games Won: ",  40, 130);
+                LCD.WriteAt("Best Time: ",  40, 150);
+                LCD.Update();
+                Sleep(3.0);
+                BackToStats();
+            }
+            else if (x >= 5 && x <= 80 && y >= 5 && y <= 25)
+            {
+                LCD.Clear();
+                GameMenu();
+                return;
+            }
+            else if (x >= 275 && x <= 320 && y >= 5 && y <= 25)
+            {
+                LCD.Clear();
+                ViewStatistics();
+                return;
+            }
+        }
+    }
+    Sleep(0.1);
 }
+
+
 
 void ViewInstructions()
 {
@@ -232,7 +336,20 @@ void ViewInstructions()
     LCD.WriteAt("within the time limit,", 94, 195);
     LCD.WriteAt("you win!", 136, 205);
 
-    LCD.Update();
+    int x, y;
+    BackButton();
+    while(true)
+        {
+            if (LCD.Touch(&x, &y))
+            {
+                if(x >= 5 && x <= 80 && y >= 5 && y <= 25)
+                {
+                    LCD.Clear();
+                    return;
+                }
+            }
+        }
+    Sleep(0.1);
 }
 
 void ViewCredits()
@@ -259,4 +376,38 @@ void ViewCredits()
     LCD.WriteAt("Carrie Evans", 124, 205);
     LCD.WriteAt("Maria Morales-Cortes", 100, 220);
     LCD.Update();
+
+    int x, y;
+    BackButton();
+    while(true)
+        {
+            if (LCD.Touch(&x, &y))
+            {
+                if(x >= 5 && x <= 80 && y >= 5 && y <= 25)
+                {
+                    LCD.Clear();
+                    return;
+                }
+            }
+        }
+    Sleep(0.1);
 }
+
+void BackToStats()
+{
+    LCD.SetFontColor(DODGERBLUE);
+    LCD.SetFontScale(0.5);
+    LCD.WriteAt("BACK", 280, 10);
+    LCD.SetFontColor(DODGERBLUE);
+    LCD.DrawRectangle(275, 5, 35, 20);
+    LCD.Update();
+}
+
+class GameStatistics
+{
+    private:
+    int easyGamesPlayed;
+    int mediumGamesPlayed;
+    int hardGamesPlayed;
+};
+
