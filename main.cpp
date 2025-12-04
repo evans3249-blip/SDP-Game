@@ -11,10 +11,14 @@ void WelcomeScreen();
 void GameMenu();
 void BackButton();
 void PlayGame();
+void EasyMode();
+void MediumMode();
+void HardMode();
 void ViewStatistics();
+void BackToStats();
 void ViewInstructions();
 void ViewCredits();
-void BackToStats();
+
 
 int main()
 {
@@ -171,7 +175,7 @@ void PlayGame()
                 LCD.Update();
                 Sleep(2.0);
                 LCD.Clear();
-                return;
+                EasyMode();
             }
             else if (x >= 90 && x <= 230 && y >= 140 && y <= 176)
             {
@@ -183,7 +187,7 @@ void PlayGame()
                 LCD.Update();
                 Sleep(2.0);
                 LCD.Clear();
-                return;
+                MediumMode();
             }
             else if (x >= 90 && x <= 230 && y >= 190 && y <= 226)
             {
@@ -195,7 +199,7 @@ void PlayGame()
                 LCD.Update();
                 Sleep(2.0);
                 LCD.Clear();
-                return;
+                HardMode();
             }
             else if (x >= 5 && x <= 80 && y >= 5 && y <= 25)
             {
@@ -206,6 +210,33 @@ void PlayGame()
         }
         Sleep(0.1);
     }
+}
+
+void EasyMode()
+{
+    FEHImage farm;
+    farm.Open("farm.png");
+    farm.Draw(0, 0);
+    LCD.SetBackgroundColor(BLACK);
+    LCD.Update();
+}
+
+void MediumMode()
+{
+    FEHImage farm;
+    farm.Open("farm.png");
+    farm.Draw(0, 0);
+    LCD.SetBackgroundColor(BLACK);
+    LCD.Update();
+}
+
+void HardMode()
+{
+    FEHImage farm;
+    farm.Open("farm.png");
+    farm.Draw(0, 0);
+    LCD.SetBackgroundColor(BLACK);
+    LCD.Update();
 }
 
 void ViewStatistics()
@@ -305,8 +336,6 @@ void ViewStatistics()
     }
     Sleep(0.1);
 }
-
-
 
 void ViewInstructions()
 {
